@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axiosClient from "../axios-client";
 import { useStateContext } from "../context/ContextProvider";
 
-const CandidateCard = ({ candidate }) => {
+const CandidateCard = ({ candidate, user, handler }) => {
     const { setToken } = useStateContext();
     const navigate = useNavigate();
     const [error, setError] = useState(null);
@@ -51,7 +51,7 @@ const CandidateCard = ({ candidate }) => {
                         .getElementById(`modal${candidate?.id}`)
                         .showModal();
                 }}
-                className="glassmorphism flex flex-col gap-2 items-center w-52 h-[23rem] rounded-lg transition duration-300 candidate"
+                className="glassmorphism flex flex-col gap-2 items-center my-5 md:my-0 w-52 h-[23rem] rounded-lg transition duration-300 candidate"
             >
                 <div className="avatar static m-2">
                     <div className="w-48 h-60 rounded-lg candidate-img">
@@ -63,17 +63,29 @@ const CandidateCard = ({ candidate }) => {
                         {candidate?.name}
                     </span>
                 </div>
-                <button
-                    className="text-white text-xl px-10 bg-dark-blue rounded transition duration-300 hover:text-dark-blue hover:bg-light-blue"
-                    onClick={(ev) => {
-                        ev.stopPropagation();
-                        document
-                            .getElementById(`vote${candidate?.id}`)
-                            .showModal();
-                    }}
-                >
-                    vote
-                </button>
+                {user?.role == "admin" ? (
+                    <button
+                        className="text-cream text-xl px-10 bg-red-700 rounded transition duration-300 hover:text-dark-blue hover:bg-light-blue"
+                        onClick={(ev) => {
+                            ev.stopPropagation();
+                            handler(candidate?.id);
+                        }}
+                    >
+                        Delete
+                    </button>
+                ) : (
+                    <button
+                        className="text-white text-xl px-10 bg-dark-blue rounded transition duration-300 hover:text-dark-blue hover:bg-light-blue"
+                        onClick={(ev) => {
+                            ev.stopPropagation();
+                            document
+                                .getElementById(`vote${candidate?.id}`)
+                                .showModal();
+                        }}
+                    >
+                        vote
+                    </button>
+                )}
             </div>
             <dialog id={`vote${candidate?.id}`} className="modal">
                 <div className="modal-box bg-[#D9D9D9]">

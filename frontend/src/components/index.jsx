@@ -1,10 +1,15 @@
 export { default as DefaultLayout } from "./layout/DefaultLayout";
 export { default as GuestLayout } from "./layout/GuestLayout";
 export { default as Alert } from "./Alert";
+export { default as AddCandidate } from "./AddCandidate";
 export { default as Input } from "./Input";
+export { default as InputText } from "./InputText";
 export { default as Button } from "./Button";
 export { default as Title } from "./Title";
 export { default as Navbar } from "./Navbar";
+export { default as Sidebar } from "./Sidebar";
+export { default as Dropdown } from "./Dropdown";
+export { default as Sidelink } from "./Sidelink";
 export { default as VoteHeader } from "./VoteHeader";
 export { default as CandidateCard } from "./CandidateCard";
 export { default as VotedCard } from "./VotedCard";

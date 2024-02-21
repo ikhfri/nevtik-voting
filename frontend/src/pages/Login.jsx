@@ -51,44 +51,70 @@ const Login = () => {
                         text="“Satukan Suara, Wujudkan Demokrasi,
     Lahirkan Pemimpin Berdedikasi”"
                     />
-                    <div className="w-full lg:w-1/3 px-12 flex flex-col justify-center gap-16 z-50 bg-white">
-                        <div className="flex flex-col items-center">
-                            <div className="flex items-center justify-center">
+                    <div className="w-full lg:w-1/3 bg-white h-full">
+                        <div className="relative">
+                            <img
+                                src="/images/rectangle.png"
+                                className="w-16 transform -scale-x-100 -scale-y-100 absolute top-0 right-0"
+                            />
+                        </div>
+                        <div className="flex flex-col justify-center gap-16 z-50 px-12 h-full">
+                            <div className="flex flex-col items-center">
+                                <div className="flex items-center justify-center">
+                                    <img
+                                        src="/images/kampak.png"
+                                        alt=""
+                                        width={40}
+                                    />
+                                    <img
+                                        src="/images/mppk.png"
+                                        alt=""
+                                        width={40}
+                                    />
+                                    <img
+                                        src="/images/osis.png"
+                                        alt=""
+                                        width={45}
+                                    />
+                                </div>
+                                <div className="w-[32rem] text-center">
+                                    <Title title="pemilu raya osis" />
+                                </div>
+                                <h2 className="text-xl md:text-2xl mb-1 text-dark-blue mt-2">
+                                    Sign In
+                                </h2>
+                            </div>
+                            {errors && <Alert text={errors} error />}
+                            <form onSubmit={onSubmit} method="POST">
+                                <Input
+                                    innerRef={nisRef}
+                                    name="nis"
+                                    label="NIS"
+                                    icon="mdi:user"
+                                />
+                                <Input
+                                    innerRef={passwordRef}
+                                    name="password"
+                                    label="Password"
+                                    icon="mdi:lock-outline"
+                                    showeye
+                                />
+                                <LoginBtn text="Sign In" />
+                            </form>
+                            <div className="flex gap-2 items-center justify-center">
+                                <h2 className="text-dark-blue">Powered By</h2>
                                 <img
-                                    src="/images/kampak.png"
+                                    src="/images/nevtik.png"
                                     alt=""
                                     width={40}
                                 />
-                                <img src="/images/mppk.png" alt="" width={40} />
-                                <img src="/images/osis.png" alt="" width={45} />
                             </div>
-                            <div className="w-[32rem] md:text-center">
-                                <Title title="pemilu raya osis" />
-                            </div>
-                            <h2 className="text-xl md:text-2xl mb-1 text-dark-blue mt-2">
-                                Sign In
-                            </h2>
                         </div>
-                        {errors && <Alert text={errors} error />}
-                        <form onSubmit={onSubmit} method="POST">
-                            <Input
-                                innerRef={nisRef}
-                                name="nis"
-                                label="NIS"
-                                icon="mdi:user"
+                        <div className="relative">
+                            <img
+                                src="/images/rectangle.png"
+                                className="w-16 absolute bottom-0 left-0"
                             />
-                            <Input
-                                innerRef={passwordRef}
-                                name="password"
-                                label="Password"
-                                icon="mdi:lock-outline"
-                                showeye
-                            />
-                            <LoginBtn text="Sign In" />
-                        </form>
-                        <div className="flex gap-2 items-center justify-center">
-                            <h2 className="text-dark-blue">Powered By</h2>
-                            <img src="/images/nevtik.png" alt="" width={40} />
                         </div>
                     </div>
                 </div>

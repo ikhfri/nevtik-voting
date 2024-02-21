@@ -12,9 +12,7 @@ export default function DefaultLayout() {
 
     return (
         <div className="w-full min-h-screen z-50 gradient-bg">
-            <div className="fixed z-50 md:static glassmorphism w-full ">
-                <Navbar title={"pemilu raya osis 2024"} logo />
-            </div>
+            <Navbar title={"pemilu raya osis 2024"} logo />
             <Outlet />
         </div>
     );

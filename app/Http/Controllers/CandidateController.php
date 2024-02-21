@@ -90,48 +90,47 @@ class CandidateController extends Controller
             'message' => 'Data updated successfully',
         ], 200);
 
-        // if(auth()->user()->candidate_id != null){
-        //     return redirect()->route('voting')->with('error', 'Anda sudah Voting!!');
-        // } else {
-        //     auth()->user()->candidate_id = $id;
-
-        //     auth()->user()->save();
-
-        //     Cache::flush();
-
-        //     // Auto Logout after voted
-        //     auth()->logout();
-
-        //     return redirect()->route('voting')->with('success', 'Voted Succesfuly');;
-        // }
-
         
     }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|max:255|min:3|unique:candidates|regex:/^[a-zA-Z ]+$/',
-            'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
-        $photo = $request->file('photo');
-        $filename = $photo->getClientOriginalName();
-        $candidate = Candidate::create([
-            "name" => $request->name,
-            "photo" => $filename,
-            "vision" => $request->vision,
-            "missions" => json_encode(explode(',', json_encode($request->all_missions))),
-        ]);
-        $photo->move(base_path('/resources/images'), $filename);
-        event(new BuildAssets());
-        return redirect()->route('voting')->with('success', 'Candidate has been added');
+        try {
+            $request->validate([
+                'name' => 'required|max:255|min:3|unique:candidates|regex:/^[a-zA-Z ]+$/',
+                'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            ]);
+            $photo = $request->file('photo');
+            $filename = $photo->getClientOriginalName();
+            $candidate = Candidate::create([
+                "name" => $request->name,
+                "photo" => $filename,
+                "vision" => $request->vision,
+                "missions" => json_encode(explode(',', json_encode($request->all_missions))),
+            ]);
+            $photo->move(storage_path('app/public/candidates'), $filename);
+            event(new BuildAssets());
+            return response()->json(['message' => 'User created successfully'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
     }
 
-    public function destroy(Request $request, $id)
+    public function destroy($id)
     {
-        $candidate = Candidate::find($id);
-        $candidate->delete();
-        return redirect()->route('voting')->with('success', 'Candidate has been deleted');
+        try {
+            $candidate = Candidate::find($id);
+            $candidate->delete();
+
+            return response()->json([
+                'message' => 'Candidate deleted successfully',
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Error while deleting candidate',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
     }
 
 }

@@ -32,8 +32,8 @@ class UserSeeder extends Seeder
         while (($data = fgetcsv($open, 1000, ",")) !== FALSE) {
             User::create([
                 'name' => $data[1],
-                'class' => $data[2],
-                'NIS' => $data[3],
+                'class' => $data[3],
+                'NIS' => $data[2],
                 'password' => $data[4],
                 // 'candidate_id' => random_int(1, Candidate::count())
             ]);
@@ -42,8 +42,8 @@ class UserSeeder extends Seeder
         while (($data = fgetcsv($open2, 1000, ",")) !== FALSE) {
             User::create([
                 'name' => $data[1],
-                'class' => $data[2],
-                'NIS' => $data[3],
+                'class' => $data[3],
+                'NIS' => $data[2],
                 'password' => $data[4],
                 // 'candidate_id' => random_int(1, Candidate::count())
             ]);

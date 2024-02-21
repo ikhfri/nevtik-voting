@@ -26,9 +26,9 @@ class UserController extends Controller
                 $users = User::with('candidate')->where('class', $class_parsed);
             }
             if ($request->has('votestatus')){
-                $users = $request->get('votestatus') == '1' ? $users->whereNotNull('candidate_id') : $users->where('candidate_id', null);
+                $users = $request->get('votestatus') == 'Voted' ? $users->whereNotNull('candidate_id') : $users->where('candidate_id', null);
             }
-            $users = $users->paginate(15);
+            $users = $users->paginate();
             $candidates = Candidate::all();
             $classes = User::select('class')->distinct()->get();
             $classes = $classes->map(function ($class){
@@ -41,6 +41,14 @@ class UserController extends Controller
                 'candidates'=> $candidates,
                 'tabChoosen' => 'students',
                 'classes' => $classes->sort()->values(),
+                'pagination' => [
+                    'total' => $users->total(),
+                    'per_page' => $users->perPage(),
+                    'current_page' => $users->currentPage(),
+                    'last_page' => $users->lastPage(),
+                    'from' => $users->firstItem(),
+                    'to' => $users->lastItem(),
+                ],
             ], 200);
         } catch (\Exception $e) {
             return response()->json([
@@ -52,78 +60,76 @@ class UserController extends Controller
 
 
     public function postIndex(Request $request){
-       if($request->has('add-voter')){
-              $this->validate($request, [
-                'name' => 'required|string|max:255',
-                'email' => 'required|string|email|max:255|unique:users',
-                'NIS' => 'required|string|max:255|unique:users',
-                'password'=> 'required|string|min:6',
-              ]);
-              $user = new User();
-              $user->name = $request->get('name');
-              $user->nis = $request->get('NIS');
-              $user->class = $request->get('class');
-              $user->role = $request->get('role');    
-              $user->password = $request->get('password');
-              $user->save();
-              return redirect()->route('dashboard')->with('success', 'Voter added successfully');
-       }
-
-        if($request->has('tab-choosen')){
-            
-            $candidates = Candidate::with('users')->get();
-            switch ($request->get('tab-choosen')){
-                case 'students':
-                    $users = User::with('candidate')->paginate(15);
-                    // $users = cache()->remember('users', 3600, function () {
-                    //     return User::with('candidate')->paginate(10);
-                    // });
-                    // Chace for 2 hours
-                    $classes = User::select('class')->distinct()->get();
-                    $classes = $classes->map(function ($class){
-                        return $class->class;
-                    });
-                    return view('dashboard', [
-//                       
-                        'students'=> Cache::has('users') ? Cache::get('users') : $users,
-                        'candidates'=> $candidates,
-                        'tabChoosen' => 'students',
-                        'classes' => $classes->sort()->values(),
-                    ]);
-                case 'statistics':
-                    if ($request->has('showing-time') && $request->has('detail-time')){
-                        $newTime = new Time();
-                        $newTime->deadline = $request->get('showing-time');
-                        $newTime->started = $request->get('detail-time');
-                        $newTime->save();
-                    }
-                    // Get the latest time
-                    $time = Time::latest()->first() ?? Time::createNewTime('15 Jan 2025', '15:00:00');
-                    return view('dashboard', [
-                        'time' => $time,
-                        'candidates' => $candidates,
-                        'candidate_names' => $candidates->pluck('name')->push('Not Voters'),
-                        'n_candidate_voters' => $candidates->map(function ($candidate){
-                            return $candidate->users->count();
-                        })->push(User::where('candidate_id', null)->count()),
-                        
-                        'tabChoosen' => 'statistics'
-                    ]);
-                case 'candidates':
-                    return view('dashboard', [
-                        'tabChoosen' => 'candidates',
-                        'candidates' => collect($candidates)
-                    ]);
-                case 'generate-data':
-                    // Job Here
-                    $job = new UserJob();
-                    $this->dispatch($job);
-                    Cache::flush();
-                    return view('dashboard', [
-                        'tabChoosen' => 'generate-data'
-                    ]);
-
+        try {
+            if($request->has('add-voter')){
+                $this->validate($request, [
+                    'name' => 'required|string|max:255',
+                    'NIS' => 'required|string|max:255|unique:users',
+                    'password'=> 'required|string|min:6',
+                ]);
+                $user = new User();
+                $user->name = $request->get('name');
+                $user->nis = $request->get('NIS');
+                $user->class = $request->get('class');
+                $user->role = $request->get('role');    
+                $user->password = $request->get('password');
+                $user->save();
+                return response()->json(['message' => 'User created successfully'], 200);
             }
+
+            if($request->has('tab-choosen')){
+                switch ($request->get('tab-choosen')){
+                    case 'students':
+                        $users = User::with('candidate')->paginate(15);
+                        return response()->json(['students' => $users], 200);
+                    case 'statistics':
+                        if ($request->has('showing-time') && $request->has('detail-time')){
+                            $newTime = new Time();
+                            $newTime->deadline = $request->get('showing-time');
+                            $newTime->started = $request->get('detail-time');
+                            $newTime->save();
+                        }
+                        $time = Time::latest()->first() ?? Time::createNewTime('15 Jan 2025', '15:00:00');
+                        return response()->json(['time' => $time], 200);
+                    case 'candidates':
+                        $candidates = Candidate::with('users')->get();
+                        return response()->json(['candidates' => $candidates], 200);
+                    case 'generate-data':
+                        // Job Here
+                        $job = new UserJob();
+                        $this->dispatch($job);
+                        Cache::flush();
+                        return response()->json(['message' => 'Data generation job dispatched'], 200);
+                }
+            }
+            return response()->json(['message' => 'Invalid request'], 400);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    public function statistics(Request $request){
+        try {
+            $candidates = Candidate::with('users')->get();
+            if ($request->has('showing-time') && $request->has('detail-time')){
+                $newTime = new Time();
+                $newTime->deadline = $request->get('showing-time');
+                $newTime->started = $request->get('detail-time');
+                $newTime->save();
+            }
+            // Get the latest time
+            $time = Time::latest()->first() ?? Time::createNewTime('15 Jan 2025', '15:00:00');
+            return response()->json([
+                'time' => $time,
+                'candidates' => $candidates,
+                'candidate_names' => $candidates->pluck('name')->push('Not Voters'),
+                'n_candidate_voters' => $candidates->map(function ($candidate){
+                    return $candidate->users->count();
+                })->push(User::where('candidate_id', null)->count())
+            ]);
+        }
+        catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
         }
     }
 
@@ -163,14 +169,26 @@ class UserController extends Controller
         $user->save();
         Cache::flush();
 
-        return redirect()->route('dashboard')->with('success', 'Data '.$old_name.' was updated');
+        return response()->json([
+            'message' => 'Data '.$old_name.' updated successfully',
+        ]);
     }
 
-    public function destroy(Request $request, $id)
+    public function destroy($id)
     {
-        $user = User::find($id);
-        $user->delete();
-        Cache::flush();
-        return redirect()->route('dashboard')->with('success', 'User deleted successfully');
+        try {
+            $user = User::find($id);
+            $user->delete();
+            Cache::flush();
+
+            return response()->json([
+                'message' => 'Candidate deleted successfully',
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Error while deleting candidate',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
     }
 }
