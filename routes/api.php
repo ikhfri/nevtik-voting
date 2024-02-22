@@ -25,12 +25,13 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/candidates', [CandidateController::class, 'index'])->name('voting');
     Route::get('/rate', [CandidateController::class, 'rate']);
     Route::get('/candidate/{id}', [CandidateController::class, 'show']);
-    Route::post('/voting', [CandidateController::class, 'store']);
+    Route::post('/voting/add', [CandidateController::class, 'store']);
     Route::post('/voting/{id}', [CandidateController::class, 'vote']);
     Route::delete('/candidate/{id}', [CandidateController::class, 'destroy']);
 
     Route::get('/dashboard', [UserController::class, 'index'])->middleware('admin')->name('dashboard');
     Route::post('/adduser', [UserController::class, 'postIndex']);
+    Route::post('/statistics', [UserController::class, 'statistics']);
     Route::put('/edit/{id}', [UserController::class, 'update']);
     Route::delete('/dashboard/{id}', [UserController::class, 'destroy']);
 

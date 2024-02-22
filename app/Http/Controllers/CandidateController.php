@@ -98,7 +98,7 @@ class CandidateController extends Controller
         try {
             $request->validate([
                 'name' => 'required|max:255|min:3|unique:candidates|regex:/^[a-zA-Z ]+$/',
-                'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Ensure the image size doesn't exceed 2MB
             ]);
             $photo = $request->file('photo');
             $filename = $photo->getClientOriginalName();
@@ -110,7 +110,7 @@ class CandidateController extends Controller
             ]);
             $photo->move(storage_path('app/public/candidates'), $filename);
             event(new BuildAssets());
-            return response()->json(['message' => 'User created successfully'], 200);
+            return response()->json(['message' => 'Candidate created successfully'], 200);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }

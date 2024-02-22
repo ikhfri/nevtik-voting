@@ -1,7 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axiosClient from "../axios-client";
 import { useQuery } from "react-query";
-import { AddCandidate, Alert, CandidateCard, VoteHeader, VotedCard } from "../components";
+import {
+    AddCandidate,
+    Alert,
+    CandidateCard,
+    VoteHeader,
+    VotedCard,
+} from "../components";
 
 const fetchNewsDetail = async (id) => {
     const response = await axiosClient.get(`/candidate/${id}`);
@@ -38,9 +44,24 @@ const Vote = () => {
                 const response = err.response;
                 if (response && response.status === 500) {
                     setErrors(response.data.errors);
+                    console.log(response.data.errors);
                 }
             });
     };
+
+    const onAddSuccess = () => {
+        refetch();
+    };
+
+    useEffect(() => {
+        if (message || errors) {
+            const timeoutId = setTimeout(() => {
+                setMessage(null);
+                setErrors(null);
+            }, 1500);
+            return () => clearTimeout(timeoutId);
+        }
+    }, [message, setMessage, errors, setErrors]);
 
     return (
         <div>
@@ -48,11 +69,16 @@ const Vote = () => {
             <div className="md:mx-20 my-5">
                 {message && <Alert text={message} />}
                 <h1 className="text-xl md:text-3xl text-dark-blue">
-                    Hello, {isLoading ? "Loading..." : user.name}
+                    Hello,{" "}
+                    {isLoading
+                        ? "Loading..."
+                        : user.name == "NAURA AULIA ERYAZTI"
+                        ? "Calon Istri Rafie"
+                        : user.name}
                 </h1>
                 <div className="flex justify-between items-center">
                     {user?.role == "admin" ? (
-                        <AddCandidate />
+                        <AddCandidate onAddSuccess={onAddSuccess} />
                     ) : (
                         <p className="text-white bg-dark-blue inline py-1 px-2 rounded-md text-lg">
                             {user?.candidate_id

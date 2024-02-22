@@ -92,7 +92,7 @@ const Navbar = ({ title, logo }) => {
                                     <span className="text-dark-blue font-bold ml-1 text-xl">
                                         {isLoading
                                             ? "Loading..."
-                                            : user?.name?.split(" ")[0] ||
+                                            : user?.name == "NAURA AULIA ERYAZTI" ? "Cantik" : user?.name?.split(" ")[0] ||
                                               "Guest"}
                                     </span>
                                 </p>

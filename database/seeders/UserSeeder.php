@@ -21,13 +21,12 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Admin',
             'role' => 'admin',
-            'class' => 'XII SIJA 1',
+            'class' => 'XII SIJA',
             'NIS' => fake()->unique()->numberBetween(1000000000, 9999999999),
             'password' => '5tgb6yhn',
             'email_verified_at' => now(),
             'remember_token' => Str::random(10),
         ]);
-        User::factory(30)->create();
         $open = fopen(storage_path("app\users.csv"), "r");
         while (($data = fgetcsv($open, 1000, ",")) !== FALSE) {
             User::create([

@@ -120,6 +120,7 @@ class UserController extends Controller
             // Get the latest time
             $time = Time::latest()->first() ?? Time::createNewTime('15 Jan 2025', '15:00:00');
             return response()->json([
+                'message' => 'Countdown started successfully',
                 'time' => $time,
                 'candidates' => $candidates,
                 'candidate_names' => $candidates->pluck('name')->push('Not Voters'),

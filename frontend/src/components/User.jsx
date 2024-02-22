@@ -57,7 +57,7 @@ const User = () => {
                                 {user?.class || "Loading..."}{" "}
                             </p>
                             <p className="text-neutral-500 text-base font-semibold transition duration-300">
-                                NIS: {user?.nis || ""}{" "}
+                                NIS/NIP: {user?.nis || ""}{" "}
                             </p>
                         </div>
                     </div>

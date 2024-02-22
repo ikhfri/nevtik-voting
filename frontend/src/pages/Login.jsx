@@ -89,7 +89,7 @@ const Login = () => {
                                 <Input
                                     innerRef={nisRef}
                                     name="nis"
-                                    label="NIS"
+                                    label="NIS / NIP"
                                     icon="mdi:user"
                                 />
                                 <Input
