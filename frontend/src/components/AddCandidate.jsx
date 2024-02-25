@@ -46,7 +46,7 @@ const AddCandidate = ({ onAddSuccess }) => {
         formData.append("name", name);
         formData.append("photo", selectedImage);
         formData.append("vision", vision);
-        formData.append("all_missions", missions);
+        formData.append("all_missions", JSON.stringify(missions)); // Serialize missions array to JSON string
         axiosClient
             .post("/voting/add", formData, {
                 headers: {
@@ -75,7 +75,7 @@ const AddCandidate = ({ onAddSuccess }) => {
             setSelectedImage(null);
         }
     };
-    console.log(missions)
+    console.log(missions);
 
     useEffect(() => {
         if (message || errors) {
@@ -191,7 +191,7 @@ const AddCandidate = ({ onAddSuccess }) => {
                                 type="hidden"
                                 id="all_missions"
                                 name="all_missions"
-                                value={missions.join(",")}
+                                value={JSON.stringify(missions)} // Serialize missions array to JSON string
                             />
                         </div>
                         <button

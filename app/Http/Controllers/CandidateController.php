@@ -107,7 +107,7 @@ class CandidateController extends Controller
                 "name" => $request->name,
                 "photo" => $path,
                 "vision" => $request->vision,
-                "missions" => json_encode(explode(',', json_encode($request->all_missions))),
+                "missions" => $request->all_missions,
             ]);
             $photo->move(storage_path('app/public/candidates'), $filename);
             event(new BuildAssets());

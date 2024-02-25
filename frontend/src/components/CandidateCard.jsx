@@ -42,10 +42,6 @@ const CandidateCard = ({ candidate, user, handler }) => {
 
     const candidateMission = JSON.parse(candidate?.missions);
 
-    const trimQuotationMarks = (mission) => {
-        return mission.replace(/^"|"$/g, "");
-    };
-
     return (
         <>
             <div
@@ -140,12 +136,8 @@ const CandidateCard = ({ candidate, user, handler }) => {
                                     </h1>
                                     <ul className="list-disc ml-5">
                                         {candidateMission?.map(
-                                            (mission, index) => (
-                                                <li key={index}>
-                                                    {trimQuotationMarks(
-                                                        mission
-                                                    )}
-                                                </li>
+                                            (candidate, index) => (
+                                                <li key={index}>{candidate}</li>
                                             )
                                         )}
                                     </ul>

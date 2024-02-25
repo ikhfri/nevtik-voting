@@ -22,8 +22,8 @@ class UserSeeder extends Seeder
             'name' => 'Admin',
             'role' => 'admin',
             'class' => 'XII SIJA',
-            'NIS' => fake()->unique()->numberBetween(1000000000, 9999999999),
-            'password' => '5tgb6yhn',
+            'NIS' => 1234567890,
+            'password' => '123qweasd',
             'email_verified_at' => now(),
             'remember_token' => Str::random(10),
         ]);
