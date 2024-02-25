@@ -40,7 +40,7 @@ class CandidateSeeder extends Seeder
             'vision' => 'Mencetak agen perubahan dengan mewujudkan lingkungan sekolah yang beriman,
                 berkarakter, cerdas, serta memiliki daya saing.',
             'missions' => json_encode([
-                'Merealisasikan kegiatan yang berbasis keagamaan',
+                'Merealisasikan kegiatan yang berbasis keagamaan.',
                 'Menerapkan 5 S di dalam kehidupan sehari-hari',
                 'Meningkatkan prestasi dengan mengadakan perlombaan akademik maupun non akademik',
                 'Menyelenggarakan acara yang dapat mewadahi para warga sekolah',

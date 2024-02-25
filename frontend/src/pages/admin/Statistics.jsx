@@ -214,7 +214,7 @@ const Statistics = () => {
                         Set End Time
                     </button>
                 </form>
-                <div className="relative flex gap-x-10 justify-evenly items-center w-4/5 h-36 text-gray-50 font-extrabold bg-gradient-to-bl from-blue-700 via-blue-800 to-gray-900 rounded-3xl">
+                <div className="relative flex gap-5 justify-center items-center w-4/5 h-36 text-gray-50 font-extrabold bg-gradient-to-bl from-blue-700 via-blue-800 to-gray-900 rounded-3xl">
                     <div className="absolute top-1 font-normal text-xs">
                         End Time :{" "}
                     </div>
@@ -228,7 +228,7 @@ const Statistics = () => {
                     <p className="text-2xl text-center">
                         {endTime.minutes} Minutes
                     </p>
-                    <p className="text-2xl text-center text-red-500">
+                    <p className="text-2xl text-center text-red-500 mr-5">
                         {endTime.seconds} Seconds
                     </p>
                 </div>

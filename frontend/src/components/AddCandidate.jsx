@@ -46,7 +46,7 @@ const AddCandidate = ({ onAddSuccess }) => {
         formData.append("name", name);
         formData.append("photo", selectedImage);
         formData.append("vision", vision);
-        formData.append("all_missions", missions); // Convert missions array to JSON string
+        formData.append("all_missions", missions);
         axiosClient
             .post("/voting/add", formData, {
                 headers: {
