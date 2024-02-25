@@ -102,9 +102,10 @@ class CandidateController extends Controller
             ]);
             $photo = $request->file('photo');
             $filename = $photo->getClientOriginalName();
+            $path = 'storage/candidates/' . $filename;
             $candidate = Candidate::create([
                 "name" => $request->name,
-                "photo" => $filename,
+                "photo" => $path,
                 "vision" => $request->vision,
                 "missions" => json_encode(explode(',', json_encode($request->all_missions))),
             ]);
@@ -115,6 +116,7 @@ class CandidateController extends Controller
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
+
 
     public function destroy($id)
     {

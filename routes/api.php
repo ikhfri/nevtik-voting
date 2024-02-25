@@ -31,8 +31,9 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/dashboard', [UserController::class, 'index'])->middleware('admin')->name('dashboard');
     Route::post('/adduser', [UserController::class, 'postIndex']);
+    Route::get('/showstatistics', [UserController::class, 'showStatistics']);
     Route::post('/statistics', [UserController::class, 'statistics']);
-    Route::put('/edit/{id}', [UserController::class, 'update']);
+    Route::put('/user/edit/{id}', [UserController::class, 'update']);
     Route::delete('/dashboard/{id}', [UserController::class, 'destroy']);
 
     Route::post('generate', [UserController::class, 'generate']);

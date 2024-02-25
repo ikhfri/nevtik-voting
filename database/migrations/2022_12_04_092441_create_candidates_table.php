@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name')->default('Prabowo Subianto');
             $table->string('photo')->nullable();
             $table->integer('votes')->default(0);
-            $table->string('vision')->nullable();
+            $table->string('vision', 1000)->nullable();
             $table->json('missions')->nullable();
             $table->timestamps();
         });

@@ -58,39 +58,11 @@ class UserController extends Controller
         }
     }
 
-    public function showStatistics(){
+    public function statistics(){
         try {
-            $time = Time::latest()->first() ?? Time::createNewTime('15 Jan 2025', '15:00:00');
             $candidates = Candidate::with('users')->get();
             return response()->json([
                 'message' => 'Statistic retrieved successfully',
-                'time' => $time,
-                'candidates' => $candidates,
-                'candidate_names' => $candidates->pluck('name')->push('Not Voters'),
-                'n_candidate_voters' => $candidates->map(function ($candidate){
-                    return $candidate->users->count();
-                })->push(User::where('candidate_id', null)->count())
-            ]);
-        }
-        catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
-        }
-    }
-
-    public function statistics(Request $request){
-        try {
-            $candidates = Candidate::with('users')->get();
-            if ($request->has('showing-time') && $request->has('detail-time')){
-                $newTime = new Time();
-                $newTime->deadline = $request->get('showing-time');
-                $newTime->started = $request->get('detail-time');
-                $newTime->save();
-            }
-            // Get the latest time
-            $time = Time::latest()->first() ?? Time::createNewTime('15 Jan 2025', '15:00:00');
-            return response()->json([
-                'message' => 'Countdown started successfully',
-                'time' => $time,
                 'candidates' => $candidates,
                 'candidate_names' => $candidates->pluck('name')->push('Not Voters'),
                 'n_candidate_voters' => $candidates->map(function ($candidate){

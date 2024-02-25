@@ -43,15 +43,11 @@ const Login = () => {
     }, [errors, setErrors]);
 
     return (
-        <div className="flex justify-center items-center h-screen">
-            <div className="w-11/12 lg:w-10/12 glassmorphism overflow-hidden h-[85vh] rounded-lg">
+        <div className="min-h-screen flex items-center justify-center gradient-bg">
+            <div className="w-11/12 lg:w-10/12 glassmorphism rounded-xl shadow-lg overflow-hidden my-5">
                 <div className="flex flex-col sm:flex-row h-full">
-                    <LoginBanner
-                        header="pemira 2024"
-                        text="“Satukan Suara, Wujudkan Demokrasi,
-    Lahirkan Pemimpin Berdedikasi”"
-                    />
-                    <div className="w-full lg:w-1/3 bg-white h-full">
+                    <LoginBanner />
+                    <div className="w-full lg:w-1/3 bg-white">
                         <div className="relative">
                             <img
                                 src="/images/rectangle.png"
@@ -59,7 +55,7 @@ const Login = () => {
                             />
                         </div>
                         <div className="flex flex-col justify-center gap-16 z-50 px-12 h-full">
-                            <div className="flex flex-col items-center">
+                            <div className="flex flex-col items-center mt-5 md:mt-0">
                                 <div className="flex items-center justify-center">
                                     <img
                                         src="/images/kampak.png"
@@ -101,7 +97,7 @@ const Login = () => {
                                 />
                                 <LoginBtn text="Sign In" />
                             </form>
-                            <div className="flex gap-2 items-center justify-center">
+                            <div className="flex gap-2 items-center justify-center mb-5 md:mb-0">
                                 <h2 className="text-dark-blue">Powered By</h2>
                                 <img
                                     src="/images/nevtik.png"

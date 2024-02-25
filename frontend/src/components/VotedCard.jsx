@@ -16,7 +16,7 @@ const VotedCard = ({ candidate }) => {
             <div className="flex justify-center">
                 <div className="avatar static w-1/4 m-3">
                     <div className="rounded-3xl w-52 h-96">
-                        <img src="/images/calon1.gif" alt="" />
+                        <img src={candidate?.photo_url} alt="" />
                     </div>
                 </div>
                 <div className="w-3/4 text-dark-blue m-3 flex flex-col gap-1 justify-start">

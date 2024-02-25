@@ -6,13 +6,14 @@ import { Login, Dashboard, Vote, NotFound, Voted } from "./pages";
 import "./index.css";
 
 const App = () => {
+
     return (
         <div>
             <Router>
                 <Routes>
                     <Route path="/" element={<DefaultLayout />}>
-                        <Route path="/" element={<Dashboard />} />
                         <Route path="/vote" element={<Vote />} />
+                        <Route path="/" element={<Dashboard />} />
                     </Route>
                     <Route path="/" element={<GuestLayout />}>
                         <Route path="/login" element={<Login />} />

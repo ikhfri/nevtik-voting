@@ -15,7 +15,7 @@ const AddCandidate = ({ onAddSuccess }) => {
 
     const handleAddMission = (ev) => {
         ev.preventDefault();
-        setMissions((prevMissions) => [...prevMissions, ""]);
+        setMissions((prevMissions) => [...prevMissions, null]);
     };
 
     const resetForm = () => {
@@ -46,7 +46,7 @@ const AddCandidate = ({ onAddSuccess }) => {
         formData.append("name", name);
         formData.append("photo", selectedImage);
         formData.append("vision", vision);
-        formData.append("missions", JSON.stringify(missions)); // Convert missions array to JSON string
+        formData.append("all_missions", missions); // Convert missions array to JSON string
         axiosClient
             .post("/voting/add", formData, {
                 headers: {
@@ -55,8 +55,8 @@ const AddCandidate = ({ onAddSuccess }) => {
             })
             .then(({ data }) => {
                 setMessage(data.message);
-                resetForm()
-                onAddSuccess()
+                resetForm();
+                onAddSuccess();
             })
             .catch((err) => {
                 const response = err.response;
@@ -75,6 +75,7 @@ const AddCandidate = ({ onAddSuccess }) => {
             setSelectedImage(null);
         }
     };
+    console.log(missions)
 
     useEffect(() => {
         if (message || errors) {
@@ -159,7 +160,7 @@ const AddCandidate = ({ onAddSuccess }) => {
                                             name="mission[]"
                                             className="input input-bordered w-full bg-dark-blue transition duration-300 mb-2"
                                             placeholder="Mission"
-                                            value={mission}
+                                            value={mission || ""}
                                             onChange={(e) =>
                                                 handleMissionChange(
                                                     index,

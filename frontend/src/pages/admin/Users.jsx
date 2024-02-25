@@ -1,5 +1,5 @@
 import React, { createRef, useEffect, useState } from "react";
-import { useQuery } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import axiosClient from "../../axios-client";
 import ReactPaginate from "react-paginate";
 import { Alert, Dropdown, InputText } from "../../components";
@@ -16,7 +16,7 @@ const Users = () => {
     const [page, setPage] = useState(1);
     const [classStatus, setClassStatus] = useState(null);
     const [voteStatus, setVoteStatus] = useState(null);
-    const { data: dashboard, refetch } = useQuery(
+    const { data: dashboard } = useQuery(
         ["dashboard", page, voteStatus, classStatus],
         () =>
             axiosClient
@@ -26,6 +26,25 @@ const Users = () => {
                     }${classStatus ? `&class=${classStatus}` : ""}`
                 )
                 .then(({ data }) => data)
+    );
+
+    const { mutate } = useMutation(
+        (payload) => axiosClient.put("/user/edit/{id}", payload),
+        {
+            onSuccess: () => {
+                setMessage("User updated successfully");
+                refetchUser();
+            },
+            onError: (err) => {
+                const response = err.response;
+                if (
+                    response &&
+                    (response.status === 401 || response.status === 422)
+                ) {
+                    setErrors(response.data.message);
+                }
+            },
+        }
     );
 
     const handleDelete = (id) => {
@@ -41,6 +60,7 @@ const Users = () => {
                     setErrors(response.data.errors);
                 }
             });
+        document.getElementById(`delete${id}`).close();
     };
 
     const onSubmit = (ev) => {
@@ -50,7 +70,7 @@ const Users = () => {
             "add-voter": 1,
             name,
             role,
-            "class": userClass,
+            class: userClass,
             NIS: nis,
             password,
         };
@@ -97,7 +117,9 @@ const Users = () => {
     return (
         <div className="p-2 md:p-10 glassmorphism rounded-3xl w-10/12">
             {errors &&
-                Object.keys(errors).map((error) => <Alert text={errors} error />)}
+                Object.keys(errors).map((error) => (
+                    <Alert text={errors} error />
+                ))}
             {message && <Alert text={message} />}
             <div className="mb-10">
                 <p className="text-lg text-main-bg font-medium">list</p>
@@ -167,18 +189,49 @@ const Users = () => {
                                 </th>
                                 <th>
                                     <div className="flex justify-center gap-3">
-                                        <button className="btn btn-outline bg-light-blue btn-sm font-bold text-dark-blue hover:bg-dark-blue hover:text-light-blue">
-                                            edit
-                                        </button>
                                         <button
-                                            onClick={() =>
-                                                handleDelete(student.id)
-                                            }
+                                            onClick={() => {
+                                                document
+                                                    .getElementById(
+                                                        `delete${student?.id}`
+                                                    )
+                                                    .showModal();
+                                            }}
                                             className="btn btn-outline bg-red-600 btn-sm font-bold text-cream hover:bg-cream hover:text-red-600"
                                         >
                                             delete
                                         </button>
                                     </div>
+                                    <dialog
+                                        id={`delete${student?.id}`}
+                                        className="modal"
+                                    >
+                                        <div className="modal-box bg-[#D9D9D9]">
+                                            <h3 className="font-bold text-2xl text-dark-blue">
+                                                Are you sure
+                                            </h3>
+                                            <p className="py-4 text-xl text-dark-blue">
+                                                You want to vote {student?.name}
+                                                ?
+                                            </p>
+                                            <div className="modal-action">
+                                                <button
+                                                    onClick={() =>
+                                                        handleDelete(student.id)
+                                                    }
+                                                    className="btn text-lg bg-cyan-600 text-white border-none"
+                                                >
+                                                    Confirm
+                                                </button>
+                                                <form method="dialog">
+                                                    {/* if there is a button in form, it will close the modal */}
+                                                    <button className="btn text-lg bg-red-700 text-white border-none">
+                                                        Close
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </dialog>
                                 </th>
                             </tr>
                         ))}

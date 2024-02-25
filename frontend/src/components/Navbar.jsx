@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import User from "./User";
 import axiosClient from "../axios-client";
@@ -9,6 +9,22 @@ import Title from "./Title";
 const Navbar = ({ title, logo }) => {
     const location = useLocation();
     const isVotedPage = location.pathname === "/voted";
+    const [distance, setDistance] = useState(0);
+    const { data: statistic } = useQuery("statistic", () =>
+        axiosClient.get("/showstatistics").then(({ data }) => {
+            return data;
+        })
+    );
+
+    useEffect(() => {
+        if (statistic) {
+            const now = new Date().getTime();
+            const endTime = new Date(
+                statistic?.time.deadline + " " + statistic?.time.started
+            ).getTime();
+            setDistance(endTime - now);
+        }
+    }, [statistic]);
 
     const { data: user, isLoading } = useQuery("user", () =>
         axiosClient.get("/me").then(({ data }) => data)
@@ -42,7 +58,7 @@ const Navbar = ({ title, logo }) => {
                         <Title title={title} />
                     </div>
                 </div>
-                <div className="flex gap-6 items-center mr-5">
+                <div className="md:flex gap-6 items-center mr-5 hidden">
                     {isVotedPage ? (
                         <NavLink
                             to="/login"
@@ -58,7 +74,7 @@ const Navbar = ({ title, logo }) => {
                             >
                                 dashboard
                             </NavLink>
-                            {user?.candidate_id ? null : (
+                            {user?.candidate_id || distance < 0 ? null : (
                                 <NavLink
                                     to="/vote"
                                     className="text-2xl capitalize text-dark-blue"
@@ -92,7 +108,10 @@ const Navbar = ({ title, logo }) => {
                                     <span className="text-dark-blue font-bold ml-1 text-xl">
                                         {isLoading
                                             ? "Loading..."
-                                            : user?.name == "NAURA AULIA ERYAZTI" ? "Cantik" : user?.name?.split(" ")[0] ||
+                                            : user?.name ==
+                                              "NAURA AULIA ERYAZTI"
+                                            ? "Cantik"
+                                            : user?.name?.split(" ")[0] ||
                                               "Guest"}
                                     </span>
                                 </p>

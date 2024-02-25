@@ -17,52 +17,62 @@ class CandidateSeeder extends Seeder
     {
         // Create 5 candidates
         Candidate::create([
-            'name' => 'Angela Merkel',
-            'photo' => 'angela-merkel.jpg',
+            'name' => 'M. Deni Lesmana Kurniawan',
+            'photo' => 'storage/candidates/Deni.jpg',
             'votes' => 0,
              //give me real angela merkel vision
-            'vision' => 'The future is wide open and depends on us, on all of us',
+            'vision' => 'Meningkatkan potensi siswa/i SMK Negeri 1 Cibinong untuk mewujudkan siswa/i yang berkualitas dan invoatif dengan memiliki karakter disiplin, tanggung jawab serta menjujung tinggi nilai kejujuran.',
             'missions' => json_encode([
-                'no shadow had darkened her childhood.',
-                'I experienced firsthand how nothing has to stay the way it is…Anything that seems set in stone or inalterable can indeed change',
-                'like being in a dark room, so dark you couldn`t see your hand in front of your face',
+                'Mengedepankan nilai akidah akhlak terhadap sesama individu sehingga terwujudnya siswa/i yang berkarakter mulia.',
+                'Mendorong dan mengembangkan minat bakat siswa/i dalam bidang akademik maupun non-akademik.',
+                'Mengadakan kegiatan yang berhubungan dengan pembinaan karatek secara
+                terencana seperti seminar, lokakarya dan kegiatan ekstrakulikuler yang
+                mengedepankan nilai-nilai disiplin, tanggung jawab dan kejujuran.',
+                'Meningkatkan asas kekeluargaan dalam sebuah organisasi guna mempererat
+                hubungan antar anggota serta meningkatkan kinerja anggota OSIS yang
+                menjujung tinggi profesionalitas.'
             ]),
         ]);
         Candidate::create([
-            'name' => 'Recep Tayyip Erdoğan',
-            'photo' => 'erdogan.jpg',
+            'name' => 'Ghifirly Sakhaa Ghaisany',
+            'photo' => 'storage/candidates/Ghifirly.jpg',
             'votes' => 0,
-            'vision' => 'Per capita income of $25,000. Increase annual Turkish exports to $500 billion.',
+            'vision' => 'Mencetak agen perubahan dengan mewujudkan lingkungan sekolah yang beriman,
+                berkarakter, cerdas, serta memiliki daya saing.',
             'missions' => json_encode([
-                '1 million jobs project',
-                'We have also started work to increase the annual capacity of the Trans-Anatolian Natural Gas Pipeline (TANAP)',
-                'Stating that with the hydrocarbon agreement with Libya has created a new area of cooperation in the extraction of oil and derivatives from this country`s continental shelf',
-                'contacts for new deals in the field of energy with Oman, Qatar, Indonesia, Algeria, Nigeria, Malaysia, Kazakhstan and the United Arab Emirates.',
+                'Merealisasikan kegiatan yang berbasis keagamaan',
+                'Menerapkan 5 S di dalam kehidupan sehari-hari',
+                'Meningkatkan prestasi dengan mengadakan perlombaan akademik maupun non akademik',
+                'Menyelenggarakan acara yang dapat mewadahi para warga sekolah',
             ]),
         ]);
         Candidate::create([
-            'name' => 'Xi Jinping',
-            'photo' => 'xi-jinping.jpg',
+            'name' => 'Fairuz Fauziah',
+            'photo' => 'storage/candidates/Fairuz.jpg',
             'votes' => 0,
-            'vision' => 'The Work of the Past Five Years and the Great Changes in the First Decade of the New Era',
+            'vision' => 'Terwujudnya OSIS dan siswa siswi SMKN 1 Cibinong yang berkarakter, disiplin,
+                kreatif, unggul dalam prestasi akademik maupun non akademik, serta dapat mengikuti
+                perkembangan zaman dengan berlandaskan iman dan taqwa kepada Tuhan Yang Maha Esa.',
             'missions' => json_encode([
-                'developed well-conceived and complete strategic plans for advancing the cause of the Party and the country in the new era',
-                'achieved moderate prosperity, the millennia-old dream of the Chinese nation, through persistent hard work',
-                'comprehensively deepened reform with tremendous political courage',
-                'implemented a people-centered philosophy of development',
-                'pursued major-country diplomacy with Chinese characteristics on all fronts',
+                'Menumbuhkan dan meningkatkan keimanan dan ketaqwaan kepada Tuhan Yang Maha Esa.',
+                'Menerapkan 5S (Senyum, Salam, Sapa, Sopan, dan Santun) dalam lingkungan sekolah.',
+                'Meningkatkan kedisiplinan terhadap warga sekolah.',
+                'Membuat program kerja yang menarik untuk menumbuhkan kreativitas para siswa siswa.',
+                'Mengembangkan serta menyalurkan minat dan bakat yang dimiliki oleh siswa siswi SMKN 1 Cibinong.',
+                'Memanfaatkan peran media sosial sebagai alat untuk berbagi informasi dan menunjang kegiatan sekolah secara cepat dan tepat.'
             ]),
         ]);
         Candidate::create([
-            'name' => 'Vladimir Putin',
-            'photo' => 'vladimir-putin.jpg',
+            'name' => 'Muhamat Arif Dwi Yana',
+            'photo' => 'storage/candidates/Arif.jpg',
             'votes' => 0,
-            'vision' => 'reasserted control over Russia`s 89 regions and republics, dividing them into seven new federal districts, each headed by a representative appointed by the president.',
+            'vision' => 'Mewujudkan siswa SMKN 1 Cibinong menjadi siswa yang berprestasi,bertaqwa kepada Tuhan,memiliki jiwa kepemimpinan dan peduli akan lingkungan baik
+                sosial ataupun alam dan membuat OSIS sebagai Poros penggerak pengembangan siswa dan wadah para siswa untuk mengembangkan minat dan bakat mereka.',
             'missions' => json_encode([
-                'pledged Russia`s assistance and cooperation in the U.S.-led campaign against terrorists and their allies, offering the use of Russia`s airspace for humanitarian deliveries and help in search-and-rescue operations',
-                'Vladimir Putin is regularly updated on situation in Bryansk Region',
-                'Meeting with Sakhalin Region Governor Valery Limarenko',
-                'Meeting of Inter-Agency Working Group on Climate Change and Sustainable Development',
+                'Memfasilitasi teruntuk para siswa untuk mengembangkan minat dan bakat mereka melalui berbagai macam program kerja.',
+                'Meningkatkan rasa cinta peduli kebersihan dan lingkungan para siswa (general)',
+                'Membuat OSIS sebagai pusat dan wadah informasi untuk meningkatkan integritas, wawasan dan pengetahuan siswa (general).',
+                'Melakukan kaderisasi yang bertujuan menimbulkan jiwa kepemimpinan setiap siswa',
             ]),
         ]);
     }

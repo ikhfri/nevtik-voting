@@ -55,11 +55,11 @@ const CandidateCard = ({ candidate, user, handler }) => {
             >
                 <div className="avatar static m-2">
                     <div className="w-48 h-60 rounded-lg candidate-img">
-                        <img src="/images/calon1.gif" alt="" />
+                        <img src={candidate?.photo_url} alt="" />
                     </div>
                 </div>
-                <div className="text-dark-blue w-40 text-center">
-                    <span className="text-xl leading-none">
+                <div className="text-dark-blue w-44 text-center font-bold">
+                    <span className="text-lg leading-none">
                         {candidate?.name}
                     </span>
                 </div>
@@ -114,9 +114,9 @@ const CandidateCard = ({ candidate, user, handler }) => {
             <dialog id={`modal${candidate?.id}`} className="modal">
                 <div className="flex justify-center glassmorphism modal-box max-w-full w-11/12 lg:w-8/12">
                     <div className="flex justify-center gap-5">
-                        <div className="avatar static w-1/4">
+                        <div className="avatar static w-52">
                             <div className="rounded-3xl w-52 h-[26rem]">
-                                <img src="/images/calon1.gif" alt="" />
+                                <img src={candidate?.photo_url} alt="" />
                             </div>
                         </div>
                         <div className="w-3/4 text-dark-blue m-3 flex flex-col gap-5">
