@@ -26,7 +26,8 @@ const Login = () => {
                 if (
                     (response && response.status === 401) ||
                     (response && response.status === 422) ||
-                    (response && response.status === 500)
+                    (response && response.status === 500) ||
+                    (response && response.status === 429)
                 ) {
                     setErrors(response.data.message);
                 }

@@ -21,6 +21,7 @@ const Statistics = () => {
     const [endTimeIntervalId, setEndTimeIntervalId] = useState(null);
     const [countdownStarted, setCountdownStarted] = useState(false);
     const [chartColors, setChartColors] = useState([]);
+    const [mostVotedCandidate, setMostVotedCandidate] = useState(null);
 
     const {
         data: statistic,
@@ -171,6 +172,17 @@ const Statistics = () => {
         }
     }, [message, setMessage, errors, setErrors]);
 
+    useEffect(() => {
+        if (statistics) {
+            // Finding the index of the maximum value in the n_candidate_voters array
+            const maxVotesIndex = statistics.n_candidate_voters.indexOf(
+                Math.max(...statistics.n_candidate_voters)
+            );
+            // Setting the most voted candidate name
+            setMostVotedCandidate(statistics.candidate_names[maxVotesIndex]);
+        }
+    }, [statistics]);
+
     return (
         <div className="p-2 md:p-10 glassmorphism rounded-3xl w-10/12">
             <div className="mb-10">
@@ -214,7 +226,7 @@ const Statistics = () => {
                         Set End Time
                     </button>
                 </form>
-                <div className="relative flex gap-5 justify-center items-center w-4/5 h-36 text-gray-50 font-extrabold bg-gradient-to-bl from-blue-700 via-blue-800 to-gray-900 rounded-3xl">
+                <div className="relative flex gap-5 px-5 justify-center items-center w-4/5 h-36 text-gray-50 font-extrabold bg-gradient-to-bl from-blue-700 via-blue-800 to-gray-900 rounded-3xl">
                     <div className="absolute top-1 font-normal text-xs">
                         End Time :{" "}
                     </div>
@@ -228,7 +240,7 @@ const Statistics = () => {
                     <p className="text-2xl text-center">
                         {endTime.minutes} Minutes
                     </p>
-                    <p className="text-2xl text-center text-red-500 mr-5">
+                    <p className="text-2xl text-center text-red-500">
                         {endTime.seconds} Seconds
                     </p>
                 </div>
@@ -258,9 +270,63 @@ const Statistics = () => {
                 )}
             </div>
             {countdown === 0 && (
-                <div className="w-full h-screen">
-                    <Doughnut data={chartData} options={chartOptions} />
-                </div>
+                <>
+                    <div className="my-5 text-center">
+                        <h1 className="text-5xl font-bold text-dark-blue">
+                            Congratulations To
+                        </h1>
+                        <p className="text-4xl font-semibold text-main-bg">
+                            {mostVotedCandidate}
+                        </p>
+                        <p className="text-2xl font-semibold text-main-blue">
+                            Voters:{" "}
+                            {
+                                statistics.n_candidate_voters[
+                                    statistics.candidate_names.indexOf(
+                                        mostVotedCandidate
+                                    )
+                                ]
+                            }
+                        </p>
+                    </div>
+                    <div className="flex justify-center items-center">
+                        {statistics &&
+                            statistics.candidate_names.map(
+                                (candidate, index) => {
+                                    if (
+                                        index !==
+                                        statistics.candidate_names.indexOf(
+                                            mostVotedCandidate
+                                        )
+                                    ) {
+                                        return (
+                                            <div
+                                                key={index}
+                                                className="text-center"
+                                            >
+                                                <p className="text-3xl font-bold text-main-bg">
+                                                    {candidate}
+                                                </p>
+                                                <p className="text-2xl font-semibold text-main-blue">
+                                                    Voters:{" "}
+                                                    {
+                                                        statistics
+                                                            .n_candidate_voters[
+                                                            index
+                                                        ]
+                                                    }
+                                                </p>
+                                            </div>
+                                        );
+                                    }
+                                    return null;
+                                }
+                            )}
+                    </div>
+                    <div className="w-full h-screen">
+                        <Doughnut data={chartData} options={chartOptions} />
+                    </div>
+                </>
             )}
         </div>
     );
