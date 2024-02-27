@@ -58,7 +58,7 @@ const Navbar = ({ title, logo }) => {
                         <Title title={title} />
                     </div>
                 </div>
-                <div className="md:flex gap-6 items-center mr-5 hidden">
+                <div className="flex gap-6 items-center mr-5">
                     {isVotedPage ? (
                         <NavLink
                             to="/login"
@@ -70,14 +70,14 @@ const Navbar = ({ title, logo }) => {
                         <>
                             <NavLink
                                 to="/"
-                                className="text-2xl capitalize text-dark-blue"
+                                className="text-2xl capitalize text-dark-blue md:static hidden"
                             >
                                 dashboard
                             </NavLink>
                             {user?.candidate_id || distance < 0 ? null : (
                                 <NavLink
                                     to="/vote"
-                                    className="text-2xl capitalize text-dark-blue"
+                                    className="text-2xl capitalize text-dark-blue md:static hidden"
                                 >
                                     vote
                                 </NavLink>
