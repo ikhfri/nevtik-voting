@@ -102,7 +102,7 @@ class CandidateController extends Controller
             ]);
             $photo = $request->file('photo');
             $filename = $photo->getClientOriginalName();
-            $path = '/candidates/' . $filename;
+            $path = '/images/candidates/' . $filename;
             $candidate = Candidate::create([
                 "name" => $request->name,
                 "photo" => $path,
