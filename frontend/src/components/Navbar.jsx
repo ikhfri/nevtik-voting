@@ -30,7 +30,7 @@ const Navbar = ({ title, logo }) => {
         axiosClient.get("/me").then(({ data }) => data)
     );
     return (
-        <div className="z-50 glassmorphism w-full ">
+        <div className="z-50 glassmorphism w-full">
             <nav className="flex justify-between p-2 h-24 md:ml-6 md:mr-6 relative mb-5">
                 <div className="ml-5 flex items-center">
                     {logo ? (
@@ -70,14 +70,14 @@ const Navbar = ({ title, logo }) => {
                         <>
                             <NavLink
                                 to="/"
-                                className="text-2xl capitalize text-dark-blue md:static hidden"
+                                className="text-2xl capitalize text-dark-blue md:inline hidden"
                             >
                                 dashboard
                             </NavLink>
                             {user?.candidate_id || distance < 0 ? null : (
                                 <NavLink
                                     to="/vote"
-                                    className="text-2xl capitalize text-dark-blue md:static hidden"
+                                    className="text-2xl capitalize text-dark-blue md:inline hidden"
                                 >
                                     vote
                                 </NavLink>

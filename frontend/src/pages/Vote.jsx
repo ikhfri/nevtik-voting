@@ -79,10 +79,10 @@ const Vote = () => {
                     {!user?.candidate_id && (
                         <>
                             <VoteHeader />
-                            <div className="md:mx-20 my-5">
+                            <div className="md:mx-20 m-5">
                                 {message && <Alert text={message} />}
                                 <h1 className="text-xl md:text-3xl text-dark-blue">
-                                    Hello,{" "}
+                                Hello,{" "}
                                     {isLoading
                                         ? "Loading..."
                                         : user.name === "NAURA AULIA ERYAZTI"
@@ -98,6 +98,9 @@ const Vote = () => {
                                         <p className="text-white bg-dark-blue inline py-1 px-2 rounded-md text-lg">
                                             {user?.candidate_id
                                                 ? "You voted for"
+                                                : user.name ===
+                                                  "NAURA AULIA ERYAZTI"
+                                                ? "I Love You"
                                                 : "You haven't voted yet"}
                                         </p>
                                     )}

@@ -113,17 +113,17 @@ const CandidateCard = ({ candidate, user, handler }) => {
             </dialog>
             <dialog id={`modal${candidate?.id}`} className="modal">
                 <div className="flex justify-center glassmorphism modal-box max-w-full w-11/12 lg:w-8/12">
-                    <div className="flex justify-center gap-5">
-                        <div className="avatar static w-52">
+                    <div className="flex md:flex-row justify-center gap-5">
+                        <div className="avatar md:inline hidden w-52">
                             <div className="rounded-3xl w-52 h-[26rem]">
                                 <img src={candidate?.photo_url} alt="" />
                             </div>
                         </div>
-                        <div className="w-3/4 text-dark-blue m-3 flex flex-col gap-5">
-                            <h1 className="text-4xl font-bold">
+                        <div className="md:w-3/4 w-11/12 text-dark-blue md:m-3 m-0 flex flex-col gap-5">
+                            <h1 className="md:text-4xl text-3xl font-bold">
                                 {candidate?.name}
                             </h1>
-                            <div>
+                            <div className="overflow-y-auto md:overflow-y-visible">
                                 <div className="mb-5">
                                     <h1 className="text-2xl font-semibold">
                                         Visi
@@ -134,7 +134,7 @@ const CandidateCard = ({ candidate, user, handler }) => {
                                     <h1 className="text-2xl font-semibold">
                                         Misi
                                     </h1>
-                                    <ul className="list-disc ml-5">
+                                    <ul className="list-disc ml-5 md:ml-0">
                                         {candidateMission?.map(
                                             (candidate, index) => (
                                                 <li key={index}>{candidate}</li>
