@@ -41,8 +41,6 @@ const Vote = () => {
         axiosClient.get("/candidates").then(({ data }) => data.candidates)
     );
 
-    console.log(candidates);
-
     const handleDelete = (id) => {
         axiosClient
             .delete(`/candidate/${id}`)

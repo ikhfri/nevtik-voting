@@ -75,7 +75,6 @@ const AddCandidate = ({ onAddSuccess }) => {
             setSelectedImage(null);
         }
     };
-    console.log(missions);
 
     useEffect(() => {
         if (message || errors) {

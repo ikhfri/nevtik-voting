@@ -17,11 +17,6 @@ class LoginController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function index()
-    {
-        return view('login');
-    }
-
     public function authenticate(Request $request)
     {
         $credentials = $request->only('nis', 'password');

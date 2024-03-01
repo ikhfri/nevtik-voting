@@ -91,7 +91,6 @@ const Statistics = () => {
     useEffect(() => {
         if (countdown === 0) {
             clearInterval(countdownIntervalId);
-            console.log("Countdown reached 0!");
         }
     }, [countdown, countdownIntervalId]);
 
