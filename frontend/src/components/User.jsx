@@ -64,7 +64,7 @@ const User = () => {
                 )}
                 <div className="mt-5">
                     <button
-                        className="w-full rounded-xl bg-main-blue text-xl text-white p-3 hover:drop-shadow-xl"
+                        className="w-full rounded-xl bg-red-600 text-xl text-white p-3 hover:drop-shadow-xl"
                         onClick={onLogout}
                     >
                         logout

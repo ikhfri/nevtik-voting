@@ -103,19 +103,19 @@ const Welcome = () => {
     return (
         <>
             <div className="relative z-10 flex flex-col items-center justify-between">
-                <h1 className="md:text-4xl text-2xl text-center text-dark-blue font-extrabold">
-                    Civitas SMK Negeri 1 Cibinong sudah memberikan suaranya!
+                <h1 className="md:text-4xl text-2xl text-center text-white font-extrabold mt-6">
+                       Presentase Anggota Nevtik sudah memberikan suaranya!
                 </h1>
                 <div className="my-10">
                     <canvas ref={chartRef} />
                 </div>
-                <h1 className="md:text-4xl text-2xl text-center text-dark-blue font-extrabold">
-                    Tunggu apa lagi? Ayo tentukan pilihanmu!
+                <h1 className="md:text-4xl text-2xl text-center text-white font-extrabold">
+                Let's Elect the Next Leader
                 </h1>
                 <div className="flex justify-center items-center my-5">
                     <Link
                         to="/vote"
-                        className="text-light-blue py-2 px-16 bg-dark-blue text-2xl rounded-3xl font-bold"
+                        className="text-red-600 py-2 px-16 bg-white text-2xl rounded-3xl font-bold"
                     >
                         vote
                     </Link>

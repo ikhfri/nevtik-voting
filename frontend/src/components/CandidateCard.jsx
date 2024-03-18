@@ -51,14 +51,14 @@ const CandidateCard = ({ candidate, user, handler }) => {
                         .getElementById(`modal${candidate?.id}`)
                         .showModal();
                 }}
-                className="glassmorphism flex flex-col gap-2 items-center my-5 md:my-0 w-52 h-[23rem] rounded-lg transition duration-300 candidate"
+                className="bg-white flex flex-col gap-2 items-center my-5 md:my-0 w-52 h-[23rem] rounded-lg transition duration-300 candidate"
             >
                 <div className="avatar static m-2">
                     <div className="w-48 h-60 rounded-lg candidate-img">
                         <img src={candidate?.photo_url} alt="" />
                     </div>
                 </div>
-                <div className="text-dark-blue w-44 text-center font-bold">
+                <div className="text- w-44 text-center font-bold">
                     <span className="text-lg leading-none">
                         {candidate?.name}
                     </span>
@@ -69,13 +69,13 @@ const CandidateCard = ({ candidate, user, handler }) => {
                         onClick={(ev) => {
                             ev.stopPropagation();
                             handler(candidate?.id);
-                        }}
+                        }}black
                     >
                         Delete
                     </button>
                 ) : (
                     <button
-                        className="text-white text-xl px-10 bg-dark-blue rounded transition duration-300 hover:text-dark-blue hover:bg-light-blue"
+                        className="text-white text-xl px-10 bg-red-500 rounded transition duration-300 hover:text-red-600 hover:bg-gray-400"
                         onClick={(ev) => {
                             ev.stopPropagation();
                             document
@@ -89,10 +89,10 @@ const CandidateCard = ({ candidate, user, handler }) => {
             </div>
             <dialog id={`vote${candidate?.id}`} className="modal">
                 <div className="modal-box bg-[#D9D9D9]">
-                    <h3 className="font-bold text-2xl text-dark-blue">
+                    <h3 className="font-bold text-2xl text-black">
                         Are you sure
                     </h3>
-                    <p className="py-4 text-xl text-dark-blue">
+                    <p className="py-4 text-xl text-black">
                         You want to vote {candidate?.name}?
                     </p>
                     <div className="modal-action">
@@ -112,14 +112,14 @@ const CandidateCard = ({ candidate, user, handler }) => {
                 </div>
             </dialog>
             <dialog id={`modal${candidate?.id}`} className="modal">
-                <div className="flex justify-center glassmorphism modal-box max-w-full w-11/12 lg:w-8/12">
+                <div className="flex justify-center bg-white modal-box max-w-full w-11/12 lg:w-8/12">
                     <div className="flex md:flex-row justify-center gap-5">
                         <div className="avatar md:inline hidden w-52">
                             <div className="rounded-3xl w-52 h-[26rem]">
                                 <img src={candidate?.photo_url} alt="" />
                             </div>
                         </div>
-                        <div className="md:w-3/4 w-11/12 text-dark-blue md:m-3 m-0 flex flex-col gap-5">
+                        <div className="md:w-3/4 w-11/12 text-black md:m-3 m-0 flex flex-col gap-5">
                             <h1 className="md:text-4xl text-3xl font-bold">
                                 {candidate?.name}
                             </h1>
@@ -146,7 +146,7 @@ const CandidateCard = ({ candidate, user, handler }) => {
                         </div>
                     </div>
                 </div>
-                <form method="dialog" className="modal-backdrop glassmorphism">
+                <form method="dialog" className="modal-backdrop bg-red-500">
                     <button>close</button>
                 </form>
             </dialog>

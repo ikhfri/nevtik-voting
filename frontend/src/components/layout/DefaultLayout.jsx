@@ -11,8 +11,8 @@ export default function DefaultLayout() {
     }
 
     return (
-        <div className="w-full min-h-screen z-50 gradient-bg">
-            <Navbar title={"pemilu raya osis 2024"} logo />
+        <div className="w-full min-h-screen z-50 gradient-bg  ">
+            <Navbar   title={"Nevtik Vote"} logo />
             <Outlet />
         </div>
     );

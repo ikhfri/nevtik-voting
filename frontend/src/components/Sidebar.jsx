@@ -3,7 +3,7 @@ import Sidelink from "./Sidelink";
 
 const Sidebar = ({ handler, selected }) => {
     return (
-        <div className=" p-2 glassmorphism rounded-3xl w-2/12 h-96">
+        <div className=" p-2 glassmorphism rounded-3xl w-2/12 h-96 ">
             <Sidelink
                 name="users"
                 icon="mdi:users"

@@ -45,37 +45,39 @@ const Login = () => {
 
     return (
         <div className="min-h-screen flex items-center justify-center gradient-bg">
-            <div className="w-11/12 lg:w-10/12 glassmorphism rounded-xl shadow-lg overflow-hidden my-5">
+            <div className="w-11/12 lg:w-10/12 bg-[#fff] rounded-xl shadow-lg overflow-hidden my-5">
                 <div className="flex flex-col sm:flex-row h-full">
                     <LoginBanner />
                     <div className="w-full lg:w-1/3 bg-white">
-                        <div className="relative">
+                        {/* <div className="relative">
                             <img
                                 src="/images/rectangle.png"
                                 className="w-16 transform -scale-x-100 -scale-y-100 absolute top-0 right-0"
                             />
-                        </div>
+                        </div> */}
                         <div className="flex flex-col justify-center gap-16 z-50 px-12 h-full">
                             <div className="flex flex-col items-center mt-5 md:mt-0">
                                 <div className="flex items-center justify-center">
-                                    <img
+                                    {/* <img
                                         src="/images/kampak.png"
                                         alt=""
                                         width={40}
-                                    />
+                                    /> */}
                                     <img
-                                        src="/images/mppk.png"
+                                        src="/images/nevtik.png"
                                         alt=""
-                                        width={40}
+                                        width={70}
                                     />
-                                    <img
+                                    {/* <img
                                         src="/images/osis.png"
                                         alt=""
                                         width={45}
-                                    />
+                                    /> */}
                                 </div>
-                                <div className="w-[32rem] text-center">
-                                    <Title title="pemilu raya osis" />
+                                <div className="w-[32rem] text-center  ">
+                                <h1 className="text-transparent bg-clip-text bg-gradient-to-b from-red-600 from-100% to-white text-2xl md:text-4xl font-extrabold uppercase title">
+            NEVTIK VOTE
+                                 </h1>
                                 </div>
                                 <h2 className="text-xl md:text-2xl mb-1 text-dark-blue mt-2">
                                     Sign In
@@ -100,19 +102,15 @@ const Login = () => {
                             </form>
                             <div className="flex gap-2 items-center justify-center mb-5 md:mb-0">
                                 <h2 className="text-dark-blue">Powered By</h2>
-                                <img
-                                    src="/images/nevtik.png"
-                                    alt=""
-                                    width={40}
-                                />
+                                <h3 className="font-bold text-gray-500  ">WebDev Team</h3>
                             </div>
                         </div>
-                        <div className="relative">
+                        {/* <div className="relative">
                             <img
                                 src="/images/rectangle.png"
                                 className="w-16 absolute bottom-0 left-0"
                             />
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

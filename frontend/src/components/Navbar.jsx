@@ -31,16 +31,16 @@ const Navbar = ({ title, logo }) => {
     );
     return (
         <div className="z-50 glassmorphism w-full">
-            <nav className="flex justify-between p-2 h-24 md:ml-6 md:mr-6 relative mb-5">
+            <nav className="flex justify-between p-2 h-24 md:ml-6 md:mr-6 relative ">
                 <div className="ml-5 flex items-center">
                     {logo ? (
                         <>
                             <img
-                                src="/images/kampak.png"
+                                src="/images/nevtik.png"
                                 alt="logo-kampak"
-                                width={38}
+                                width={80}
                             />
-                            <img
+                            {/* <img
                                 src="/images/mppk.png"
                                 alt="logo-mppk"
                                 className="ml-2"
@@ -51,7 +51,7 @@ const Navbar = ({ title, logo }) => {
                                 alt="logo-osis"
                                 className="mx-1"
                                 width={40}
-                            />
+                            /> */}
                         </>
                     ) : null}
                     <div className="lg:block hidden">
@@ -62,7 +62,7 @@ const Navbar = ({ title, logo }) => {
                     {isVotedPage ? (
                         <NavLink
                             to="/login"
-                            className="text-2xl capitalize text-dark-blue"
+                            className="text-2xl capitalize text-white"
                         >
                             login
                         </NavLink>
@@ -70,21 +70,21 @@ const Navbar = ({ title, logo }) => {
                         <>
                             <NavLink
                                 to="/"
-                                className="text-2xl capitalize text-dark-blue md:inline hidden"
+                                className="text-2xl capitalize text-white md:inline hidden"
                             >
                                 dashboard
                             </NavLink>
                             {user?.candidate_id || distance < 0 ? null : (
                                 <NavLink
                                     to="/vote"
-                                    className="text-2xl capitalize text-dark-blue md:inline hidden"
+                                    className="text-2xl capitalize text-white md:inline hidden"
                                 >
                                     vote
                                 </NavLink>
                             )}
 
                             <div
-                                className="flex items-center gap-2 cursor-pointer p-1 hover:bg-light-gray rounded-lg"
+                                className="flex items-center gap-2 cursor-pointer p-1 hover:bg-[#FF0000] rounded-lg"
                                 onClick={() =>
                                     document
                                         .getElementById("profile")
@@ -102,15 +102,15 @@ const Navbar = ({ title, logo }) => {
                                     </div>
                                 </div>
                                 <p>
-                                    <span className="text-dark-blue text-xl">
+                                    <span className="text-white text-xl ">
                                         Hi,
                                     </span>{" "}
-                                    <span className="text-dark-blue font-bold ml-1 text-xl">
+                                    <span className="text-white font-bold ml-1 text-xl ">
                                         {isLoading
                                             ? "Loading..."
                                             : user?.name ==
-                                              "NAURA AULIA ERYAZTI"
-                                            ? "Cantik"
+                                              "MUHAMMAD HAFIZH"
+                                            ? "Tupai"
                                             : user?.name?.split(" ")[0] ||
                                               "Guest"}
                                     </span>

@@ -14,8 +14,8 @@ body {
 }
 
 :root {
-    --color-bg1: #9dc6c2;
-    --color-bg2: #f9f4e8;
+    --color-bg1: #FF423F;
+    --color-bg2: #FF423F;
     --color1: 249, 244, 232;
     --color2: 66, 138, 162;
     --color3: 66, 138, 162;
@@ -171,8 +171,8 @@ body {
 }
 
 .glassmorphism {
-    background: rgba(255, 255, 255, 0.5);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    background: #8c1c1c;
+    /* box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); */
     backdrop-filter: blur(9px);
     -webkit-backdrop-filter: blur(9px);
 }
@@ -181,6 +181,12 @@ body {
     overflow: hidden;
     background: linear-gradient(40deg, var(--color-bg2), var(--color-bg1));
 }
+
+.putih {
+    overflow: hidden;
+    background: #ffffff;
+}
+
 
 .gradients-container {
     filter: url(#goo) blur(40px);
@@ -208,7 +214,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    @apply bg-main-blue;
+    @apply bg-red-500;
     color: #ffffff;
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.75);
     margin: 0 5px;
@@ -225,7 +231,7 @@ body {
     justify-content: center;
     align-items: center;
     background-color: #ffffff;
-    @apply text-light-blue;
+    @apply text-red-500;
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.75);
     margin: 0 5px;
     cursor: pointer;

@@ -183,10 +183,10 @@ const Statistics = () => {
     }, [statistics]);
 
     return (
-        <div className="p-2 md:p-10 glassmorphism rounded-3xl w-10/12">
+        <div className="p-2 md:p-10 bg-white rounded-3xl w-10/12">
             <div className="mb-10">
-                <p className="text-lg text-main-bg font-medium">voting</p>
-                <p className="text-3xl font-extrabold tracking-tight text-dark-blue dark:text-lightOne">
+                <p className="text-lg text-red-500 font-medium">voting</p>
+                <p className="text-3xl font-extrabold tracking-tight text-red-500 dark:text-lightOne">
                     statistics
                 </p>
             </div>
@@ -225,7 +225,7 @@ const Statistics = () => {
                         Set End Time
                     </button>
                 </form>
-                <div className="relative flex gap-5 px-5 justify-center items-center w-4/5 h-36 text-gray-50 font-extrabold bg-gradient-to-bl from-blue-700 via-blue-800 to-gray-900 rounded-3xl">
+                <div className="relative flex gap-5 px-5 justify-center items-center w-4/5 h-36 text-gray-50 font-extrabold bg-gradient-to-bl from-red-500 via-red-500 to-red-500 rounded-3xl">
                     <div className="absolute top-1 font-normal text-xs">
                         End Time :{" "}
                     </div>
@@ -239,7 +239,7 @@ const Statistics = () => {
                     <p className="text-2xl text-center">
                         {endTime.minutes} Minutes
                     </p>
-                    <p className="text-2xl text-center text-red-500">
+                    <p className="text-2xl text-center text-white">
                         {endTime.seconds} Seconds
                     </p>
                 </div>
@@ -252,13 +252,13 @@ const Statistics = () => {
                         id="chart-button"
                         className={`${
                             countdownStarted ? "hidden" : "inline-block"
-                        } text-blue-700 bg-blue-200 mt-5 transition-all ease-in-out hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center my-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-800`}
+                        } text-red-500 bg-red-200 mt-5 transition-all ease-in-out hover:text-white border border-red-700 hover:bg-red-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center my-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-800`}
                         onClick={startCountdown}
                     >
                         Start Countdown
                     </button>
                 ) : (
-                    <h1 className="block text-3xl mt-5 text-center text-transparent bg-clip-text bg-gradient-to-r to-red-600 from-orange-400 font-bold">
+                    <h1 className="block text-3xl mt-5 text-center text-transparent bg-clip-text bg-gradient-to-r to-red-700 from-orange-400 font-bold">
                         Statistics will appear after voting time ends
                     </h1>
                 )}
@@ -271,13 +271,13 @@ const Statistics = () => {
             {countdown === 0 && (
                 <>
                     <div className="my-5 text-center">
-                        <h1 className="text-5xl font-bold text-dark-blue">
+                        <h1 className="text-5xl font-bold text-red-700">
                             Congratulations To
                         </h1>
-                        <p className="text-4xl font-semibold text-main-bg">
+                        <p className="text-4xl font-semibold text-red-700">
                             {mostVotedCandidate}
                         </p>
-                        <p className="text-2xl font-semibold text-main-blue">
+                        <p className="text-2xl font-semibold text-red-700">
                             Voters:{" "}
                             {
                                 statistics.n_candidate_voters[
@@ -303,10 +303,10 @@ const Statistics = () => {
                                                 key={index}
                                                 className="text-center"
                                             >
-                                                <p className="text-3xl font-bold text-main-bg">
+                                                <p className="text-3xl font-bold text-red-700">
                                                     {candidate}
                                                 </p>
-                                                <p className="text-2xl font-semibold text-main-blue">
+                                                <p className="text-2xl font-semibold text-red-500">
                                                     Voters:{" "}
                                                     {
                                                         statistics

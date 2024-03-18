@@ -55,6 +55,7 @@ const Vote = () => {
                 }
             });
     };
+    console.log(candidates)
 
     const onAddSuccess = () => {
         refetch();
@@ -79,7 +80,7 @@ const Vote = () => {
                             <VoteHeader />
                             <div className="md:mx-20 m-5">
                                 {message && <Alert text={message} />}
-                                <h1 className="text-xl md:text-3xl text-dark-blue">
+                                <h1 className="text-xl font-semibold md:text-3xl text-white">
                                     Hello,{" "}
                                     {isLoading ? "Loading..." : user.name}
                                 </h1>
@@ -89,7 +90,7 @@ const Vote = () => {
                                             onAddSuccess={onAddSuccess}
                                         />
                                     ) : (
-                                        <p className="text-white bg-dark-blue inline py-1 px-2 rounded-md text-lg">
+                                        <p className="text-red-500 bg-white inline py-1 px-2 rounded-md text-lg">
                                             {user?.candidate_id
                                                 ? "You voted for"
                                                 : "You haven't voted yet"}

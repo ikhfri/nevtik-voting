@@ -28,7 +28,7 @@ const Dashboard = () => {
     );
 
     return (
-        <div>
+        <div className="  " >
             {distance < 0 && user?.role !== "admin" ? (
                 <Closed />
             ) : user?.role == "admin" ? (
@@ -38,7 +38,7 @@ const Dashboard = () => {
             ) : !user?.candidate_id && distance > 0 ? (
                 <Welcome />
             ) : (
-                <div className="flex items-center justify-center min-h-[80vh] text-dark-blue">
+                <div className="flex items-center justify-center min-h-[80vh] text-dark-blue ">
                     <span className="loading loading-spinner loading-lg"></span>
                 </div>
             )}

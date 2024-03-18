@@ -115,20 +115,20 @@ const Users = () => {
         setClassStatus(status);
     };
     return (
-        <div className="p-2 md:p-10 glassmorphism rounded-3xl w-10/12">
+        <div className="p-2 md:p-10 bg-white rounded-3xl w-10/12">
             {errors &&
                 Object.keys(errors).map((error) => (
                     <Alert text={errors} error />
                 ))}
             {message && <Alert text={message} />}
             <div className="mb-10">
-                <p className="text-lg text-main-bg font-medium">list</p>
-                <p className="text-3xl font-extrabold tracking-tight text-dark-blue dark:text-lightOne">
+                <p className="text-lg text-black  font-medium">list</p>
+                <p className="text-3xl font-extrabold tracking-tight text-black dark:text-lightOne">
                     users
                 </p>
             </div>
             <div className="flex justify-center">
-                <div className="w-full h-10 flex items-center justify-end gap-5">
+                <div className="w-full h-10 flex items-center justify-end gap-5 ">
                     <Dropdown
                         name="Kelas"
                         contents={dashboard?.classes}
@@ -140,7 +140,7 @@ const Users = () => {
                         select={handleFilterByVoteStatus}
                     />
                     <button
-                        className="btn btn-outline bg-light-blue btn-sm font-bold text-base text-dark-blue hover:bg-dark-blue hover:text-light-blue"
+                        className="btn btn-outline bg-red-400 btn-sm font-bold text-base text-red-800 hover:bg-red-500 hover:text-white"
                         onClick={() =>
                             document.getElementById("add").showModal()
                         }
@@ -152,7 +152,7 @@ const Users = () => {
             <div className="overflow-x-auto">
                 <table className="table">
                     <thead>
-                        <tr className="border-b-dark-blue uppercase text-dark-blue text-base">
+                        <tr className="border-b-dark-blue uppercase text-black text-base">
                             <th>no</th>
                             <th>name</th>
                             <th>nis</th>
@@ -165,7 +165,7 @@ const Users = () => {
                     <tbody>
                         {dashboard?.students.data.map((student) => (
                             <tr
-                                className="border-b-dark dark:border-b-lightOne text-base text-dark-blue"
+                                className="border-b-dark dark:border-b-lightOne text-base text-black"
                                 key={student.id}
                             >
                                 <th>{student.id}</th>
@@ -177,8 +177,8 @@ const Users = () => {
                                     <button
                                         className={`uppercase text-sm ${
                                             student.candidate_id
-                                                ? "bg-light-blue p-2 rounded-md text-dark-blue w-32"
-                                                : "bg-dark-blue p-2 rounded-md text-light-blue w-32"
+                                                ? "bg-light-blue p-2 rounded-md text-white w-32"
+                                                : "bg-dark-blue p-2 rounded-md text-white w-32"
                                         }`}
                                         disabled
                                     >
@@ -239,7 +239,7 @@ const Users = () => {
                 </table>
             </div>
             <div className="flex flex-col justify-between">
-                <div className="flex flex-col items-start justify-center text-main-bg font-medium">
+                <div className="flex flex-col items-start justify-center text-red-500 font-medium">
                     <p>Total Users: {dashboard?.pagination?.total}</p>
                     <p>
                         Page: {dashboard?.pagination?.current_page} of{" "}
@@ -263,9 +263,9 @@ const Users = () => {
                 />
             </div>
             <dialog id="add" className="modal">
-                <div className="modal-box glassmorphism max-h-[40rem]">
-                    <div className="flex justify-between items-center text-dark-blue">
-                        <h3 className="font-bold text-lg">Add User</h3>
+                <div className="modal-box bg-[#FF4242] max-h-[40rem]">
+                    <div className="flex justify-between items-center text-white">
+                        <h3 className="font-bold text-lg ">Add User</h3>
                         <form method="dialog">
                             <button className="text-2xl p-3 hover:drop-shadow-xl hover:bg-light-gray rounded-full">
                                 <Icon icon="ic:round-close" />
@@ -291,13 +291,13 @@ const Users = () => {
                         />
                         <div className="form-control w-full my-2">
                             <label className="label">
-                                <span className="label-text text-dark-blue transition duration-300 text-base capitalize">
+                                <span className="label-text text-white transition duration-300 text-base capitalize">
                                     Kelas
                                 </span>
                             </label>
                             <select
                                 name="class"
-                                className="select select-bordered bg-dark-blue transition duration-300 dark:bg-main-dark-bg text-base"
+                                className="select select-bordered bg-white transition duration-300 dark:bg-main-dark-bg text-base"
                                 value={userClass}
                                 onChange={(e) => setUserClass(e.target.value)}
                             >
@@ -311,13 +311,13 @@ const Users = () => {
                         </div>
                         <div className="form-control w-full my-2">
                             <label className="label">
-                                <span className="label-text text-dark-blue transition duration-300 text-base capitalize">
+                                <span className="label-text text-white transition duration-300 text-base capitalize">
                                     Role
                                 </span>
                             </label>
                             <select
                                 name="role"
-                                className="select select-bordered bg-dark-blue transition duration-300 dark:bg-main-dark-bg text-base"
+                                className="select select-bordered bg-white transition duration-300 dark:bg-main-dark-bg text-base"
                                 value={role}
                                 onChange={(e) => setRole(e.target.value)}
                             >

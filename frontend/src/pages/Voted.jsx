@@ -3,8 +3,8 @@ import { Navbar, Thanks } from "../components";
 
 const Voted = () => {
     return (
-        <div>
-            <Navbar title={"pemira smk negeri 1 Cibinong"} />
+        <div className="gradient-bg "> 
+            <Navbar title={"Pemilihan Ketua Nevtik 2024/2025"} />
             <Thanks />
         </div>
     );

@@ -18,7 +18,7 @@ class CandidateSeeder extends Seeder
         // Create 5 candidates
         Candidate::create([
             'name' => 'M. Deni Lesmana Kurniawan',
-            'photo' => '/images/candidates/Deni.jpg',
+            'photo' => 'candidates/Deni.jpg',
             'votes' => 0,
              //give me real angela merkel vision
             'vision' => 'Meningkatkan potensi siswa/i SMK Negeri 1 Cibinong untuk mewujudkan siswa/i yang berkualitas dan invoatif dengan memiliki karakter disiplin, tanggung jawab serta menjujung tinggi nilai kejujuran.',
@@ -35,7 +35,7 @@ class CandidateSeeder extends Seeder
         ]);
         Candidate::create([
             'name' => 'Ghifirly Sakhaa Ghaisany',
-            'photo' => '/images/candidates/Ghifirly.jpg',
+            'photo' => 'candidates/Ghifirly.jpg',
             'votes' => 0,
             'vision' => 'Mencetak agen perubahan dengan mewujudkan lingkungan sekolah yang beriman,
                 berkarakter, cerdas, serta memiliki daya saing.',
@@ -48,7 +48,7 @@ class CandidateSeeder extends Seeder
         ]);
         Candidate::create([
             'name' => 'Fairuz Fauziah',
-            'photo' => '/images/candidates/Fairuz.jpg',
+            'photo' => 'candidates/Fairuz.jpg',
             'votes' => 0,
             'vision' => 'Terwujudnya OSIS dan siswa siswi SMKN 1 Cibinong yang berkarakter, disiplin,
                 kreatif, unggul dalam prestasi akademik maupun non akademik, serta dapat mengikuti
@@ -64,7 +64,7 @@ class CandidateSeeder extends Seeder
         ]);
         Candidate::create([
             'name' => 'Muhamat Arif Dwi Yana',
-            'photo' => '/images/candidates/Arif.jpg',
+            'photo' => 'candidates/Arif.jpg',
             'votes' => 0,
             'vision' => 'Mewujudkan siswa SMKN 1 Cibinong menjadi siswa yang berprestasi,bertaqwa kepada Tuhan,memiliki jiwa kepemimpinan dan peduli akan lingkungan baik
                 sosial ataupun alam dan membuat OSIS sebagai Poros penggerak pengembangan siswa dan wadah para siswa untuk mengembangkan minat dan bakat mereka.',

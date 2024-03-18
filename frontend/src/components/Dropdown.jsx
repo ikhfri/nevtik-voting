@@ -7,7 +7,7 @@ const Dropdown = ({ name, contents, select }) => {
             <div
                 tabIndex={0}
                 role="button"
-                className="btn btn-outline bg-light-blue btn-sm font-bold text-base text-dark-blue hover:bg-dark-blue hover:text-light-blue"
+                className="btn btn-outline bg-red-400 btn-sm font-bold text-base text-red-800 hover:bg-red-600 hover:text-white"
             >
                 {name}
                 <Icon icon="tabler:chevron-down" width="22" />

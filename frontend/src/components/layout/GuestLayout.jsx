@@ -10,10 +10,10 @@ export default function GuestLayout() {
 
     return (
         <div className="flex relative transition duration-300">
-            <div className="absolute w-full min-h-screen z-50">
+            <div className="absolute w-full min-h-screen z-50 gradient-bg">
                 <Outlet />
             </div>
-            <div className="gradient-bg w-full min-h-screen">
+            <div className="gradient-w-full min-h-screen">
                 <div class="gradients-container">
                     <div class="g1"></div>
                     <div class="g2"></div>
