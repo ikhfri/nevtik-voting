@@ -1,2 +1,0 @@
-# nevtik-voting
-nevtik voting 
